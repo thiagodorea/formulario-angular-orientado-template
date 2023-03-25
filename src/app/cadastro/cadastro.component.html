@@ -5,21 +5,28 @@
     <h3 class="principal__subtitulo">Dados pessoais</h3>
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="nome">Nome Completo</label>
-      <input name="nome" id="nome" class="campo__escrita">
+      <input name="nome" id="nome" class="campo__escrita" ngModel required minlength="2" #nome="ngModel" />
+      <app-mensagem-validacao-form *ngIf="nome?.errors?.['required'] && nome?.dirty" mensagem="Campo obrigatório"></app-mensagem-validacao-form>
+      <app-mensagem-validacao-form *ngIf="nome?.errors?.['minlength'] && nome?.dirty" mensagem="Campo deve ter o minimo 2 caracteres"></app-mensagem-validacao-form>
     </div>
     <div class="formulario__dupla">
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="nascimento">Nascimento</label>
-        <input name="nascimento" id="nascimento" type="date" class="campo__escrita"/>
+        <input name="nascimento" id="nascimento" type="date" class="campo__escrita" ngModel />
       </div>
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="telefone">Contato</label>
-        <input name="telefone" id="telefone" type="tel" placeholder="(XX) XXXXX-XXXX" class="campo__escrita"/>
+        <input name="telefone" id="telefone" type="tel" placeholder="(XX) XXXXX-XXXX" class="campo__escrita" ngModel #telefone="ngModel" required pattern="(\(?\d{2}\)?\s)(\d{4,5}\-\d{4})" />
+        <app-mensagem-validacao-form *ngIf="telefone.errors?.['required'] && telefone.dirty" mensagem="Campo obrigatório" ></app-mensagem-validacao-form>
+        <app-mensagem-validacao-form *ngIf="telefone.errors?.['pattern'] && telefone.dirty" mensagem="exemplo: 12 12345-1234" ></app-mensagem-validacao-form>  
       </div>
     </div>
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="email">E-mail</label>
-      <input name="email" id="email" type="email" class="campo__escrita"/>
+      <input name="email" id="email" type="email" class="campo__escrita" ngModel #email="ngModel" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" />
+      <app-mensagem-validacao-form *ngIf="email.errors?.['required'] && email?.dirty" mensagem="Campo obrigatório"></app-mensagem-validacao-form>
+      <app-mensagem-validacao-form *ngIf="email?.errors?.['pattern'] && email?.dirty" mensagem="Exemplo: exemplo@dominio.com"></app-mensagem-validacao-form>
+      <!-- <span class="erro__texto" *ngIf="formulario.controls['email']?.errors?.['email'] && formulario.controls['email']?.dirty">exemplo: exemplo@dominio.com</span> -->
     </div>
 
 

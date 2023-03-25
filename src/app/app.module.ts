@@ -8,9 +8,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { SucessoCadastroComponent } from './sucesso-cadastro/sucesso-cadastro.component';
 import { FormsModule } from '@angular/forms';
+import { MensagemValidacaoFormComponent } from './components/mensagem-validacao-form/mensagem-validacao-form.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, CadastroComponent, SucessoCadastroComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, CadastroComponent, SucessoCadastroComponent, MensagemValidacaoFormComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
